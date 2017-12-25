@@ -45,7 +45,7 @@ HuaWei::HuaWei(QWidget *parent) :
 void HuaWei::dragEnterEvent(QDragEnterEvent *event)
 {
     if (event->mimeData()->hasUrls()) {
-        QString path = event->mimeData()->urls()[0].path();
+        QString path = event->mimeData()->urls()[0].toLocalFile();
         if (path.right(3) == "xml" || path.right(3) == "cfg")
             event->acceptProposedAction();
     } else if(event->mimeData()->hasHtml()) {
@@ -56,7 +56,7 @@ void HuaWei::dragEnterEvent(QDragEnterEvent *event)
 void HuaWei::dropEvent(QDropEvent *event)
 {
     if (event->mimeData()->hasUrls()) {
-        QString path = event->mimeData()->urls()[0].path();
+        QString path = event->mimeData()->urls()[0].toLocalFile();
         if (path.right(3) == "xml") {
             ui->xml_line_edit_->setText(path);
         } else {
