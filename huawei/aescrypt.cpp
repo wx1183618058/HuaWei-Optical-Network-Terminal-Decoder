@@ -14425,6 +14425,7 @@ QString AesCrypt::decrypt_$1()
         aes_crypt_ecb(&aes_ctx, 0, (uint8_t *)buffer_pw, buffer_plain_pw);
         memcpy((char *)buffer_plain+x*16, (char *)buffer_plain_pw, 16);
     }
+    buffer_plain[len_*16] = 0;
 
     return (char *)buffer_plain;
 }
@@ -14467,6 +14468,7 @@ QString AesCrypt::decrypt_$2()
         aes_crypt_cbc(&aes_ctx, 0, 16, buffer_pw_IV, buffer_pw,buffer_plain_pw);
         memcpy((char *)buffer_plain+x*16, (char *)buffer_plain_pw, 16);
     }
+    buffer_plain[(len_-1)*16] = 0;
     return (char *)buffer_plain;
 }
 
